@@ -23,3 +23,7 @@ L.easyButton('<span class="material-symbols-outlined">paid</span>', function (bt
     clearMap();
     fetchData('melbMedianIncome', '每周个人收入（中位数）', '#94c58c', '#094f29');
 }).addTo(map);
+
+L.easyButton('<span class="material-symbols-outlined">close</span>', function (btn, map) {
+    clearMap();
+}).addTo(map);
