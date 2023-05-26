@@ -21,7 +21,7 @@ L.easyButton('<span class="material-symbols-outlined">local_police</span>', func
 
 L.easyButton('<span class="material-symbols-outlined">paid</span>', function (btn, map) {
     clearMap();
-    fetchData('melbMedianIncome', '每周个人收入（中位数）', '#94c58c', '#094f29');
+    fetchData('melbMedianIncome', '每周个人收入（中位数）', '#fff', '#094f29');
 }).addTo(map);
 
 L.easyButton('<span class="material-symbols-outlined">close</span>', function (btn, map) {
