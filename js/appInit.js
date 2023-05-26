@@ -3,7 +3,6 @@ const parameters = {
   zoomControl: true,
   position: [-37.8136, 144.96631],
   zoom: 13,
-  minZoom: 11,
   maxZoom: 20,
   addressControlPosition: "topleft",
 };
