@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>墨尔本地图</title>
+    <!-- required stylesheets -->
+    <link rel="stylesheet" href="./src/core/leaflet/leaflet.css" />
+    <!-- plugins -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+    <!-- <link rel="stylesheet" href="./src/packages/plugins/geoapify-leaflet-address-search-plugin/L.Control.GeoapifyAddressSearch.css" /> -->
+    <!-- initialization -->
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+</head>
+
+<body>
+    <!-- generate map -->
+    <div id="navbar"></div>
+    <div id="map"></div>
+    <!-- required libraries -->
+    <script src="./src/core/leaflet/leaflet.js"></script>
+    <!-- plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <script src="./src/core/choropleth/choropleth.js"></script>
+    <!-- <script src="./src/packages/plugins/geoapify-leaflet-address-search-plugin/L.Control.GeoapifyAddressSearch.js"></script> -->
+    <!-- initialization -->
+    <script src="./js/appInit.js"></script>
+    <script src="./js/ext/fetchData.js"></script>
+    <script src="./js/ext/convertJSON.js"></script>
+    <script src="./js/ext/callSupabase.js"></script>
+    
+</body>
+
+</html>
