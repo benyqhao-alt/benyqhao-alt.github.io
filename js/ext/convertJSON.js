@@ -38,13 +38,10 @@ function convertJSON(resp, variable_name, lowColor, highColor) {
       fillOpacity: 0.85,
     },
     onEachFeature: function (feature, layer) {
-      layer.on('click', function (e) {
         layer.bindPopup(
           '<h2>' + feature.properties.suburb_name + '</h2><b>' + 
           variable_name + ':</b> ' + feature.properties.value + '</p>'
           )
-        this.openPopup();
-        });
     },
   }).addTo(map);
 }
