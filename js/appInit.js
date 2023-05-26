@@ -17,7 +17,6 @@ map.setView(parameters.position, parameters.zoom);
 L.tileLayer(
   "https://api.mapbox.com/styles/v1/jkantz/cli2m28n5006o01rbdxs04ak6/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamthbnR6IiwiYSI6ImNsaTJseG94azE0YzUzZG9jYTJvM2c2YjAifQ.OE-sFY6-3p3UNu3hiBmPTQ",
   {
-    minZoom: parameters.minZoom,
-    maxZoom: parameters.maxZoom,
+    maxZoom: parameters.maxZoom
   }
 ).addTo(map);
