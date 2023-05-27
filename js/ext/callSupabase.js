@@ -11,12 +11,12 @@ function clearMap() {
 // Initiate Button Calls
 L.easyButton('<span class="material-symbols-outlined">public</span>', function (btn, map) {
     clearMap();
-    fetchData('melbEthnOriginsStats', '中国居民比例（%）', '#cdddff', '#4a8dff')
+    fetchData('melbEthnOriginsStats', '中国居民比例（%）', '#fff', '#4a8dff')
 }).addTo(map);
 
 L.easyButton('<span class="material-symbols-outlined">local_police</span>', function (btn, map) {
     clearMap();
-    fetchData('melbCrimeStats', '犯罪数（2013-2022）', '#ffbaba', '#a70000');
+    fetchData('melbCrimeStats', '犯罪数（2013-2022）', '#fff', '#a70000');
 }).addTo(map);
 
 L.easyButton('<span class="material-symbols-outlined">paid</span>', function (btn, map) {
