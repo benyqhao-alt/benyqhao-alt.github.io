@@ -27,31 +27,32 @@ function convertJSON(resp, variable_name, lowColor, highColor) {
 
   console.log(geoJSON)
 
-  layerGroup = L.choropleth(geoJSON, {
-    valueProperty: "value", // which property in the features to use
-    scale: [lowColor, highColor], // chroma.js scale - include as many as you like
-    steps: 10, // number of breaks or steps in range
-    mode: "k", // q for quantile, e for equidistant, k for k-means
-    style: {
-      color: "#fff", // border color
-      weight: 1,
-      fillOpacity: 0.85,
-    },
+//   layerGroup = L.choropleth(geoJSON, {
+//     valueProperty: "value", // which property in the features to use
+//     scale: [lowColor, highColor], // chroma.js scale - include as many as you like
+//     steps: 10, // number of breaks or steps in range
+//     mode: "k", // q for quantile, e for equidistant, k for k-means
+//     style: {
+//       color: "#fff", // border color
+//       weight: 1,
+//       fillOpacity: 0.85,
+//     },
+//     onEachFeature: function (feature, layer) {
+//         layer.bindPopup(
+//           '<h2>' + feature.properties.suburb_name + '</h2><b>' + 
+//           variable_name + ':</b> ' + feature.properties.value + '</p>'
+//           )
+//     },
+//   }).addTo(map);
+  // Load features
+  layerGroup = L.geoJSON(geoJSON, {
     onEachFeature: function (feature, layer) {
-        layer.bindPopup(
-          '<h2>' + feature.properties.suburb_name + '</h2><b>' + 
-          variable_name + ':</b> ' + feature.properties.value + '</p>'
-          )
-    },
-  }).addTo(map);
+      layer.bindPopup('<h2>' + feature.properties.suburb_name + '</h2><b>' + variable_name + ':</b> ' + feature.properties.value + '</p>');
+    }
+  }).addTo(map)
 }
 
 
 
 
-  // // Load features
-  // layerGroup = L.geoJSON(geoJSON, {
-  //   onEachFeature: function (feature, layer) {
-  //     layer.bindPopup('<h2>' + feature.properties.suburb_name + '</h2><b>' + variable_name + ':</b> ' + feature.properties.value + '</p>');
-  //   }
-  // }).addTo(map)
+
