@@ -41,7 +41,7 @@ function convertJSON(resp, chloropleth) {
     
     map.flyToBounds(layerGroup.getBounds())
 
-  } else {
+  } else if (geoJSON.features[0]) {
     clearMap();
     layerGroup = L.choropleth(geoJSON, {
       valueProperty: "value", // which property in the features to use
@@ -59,6 +59,8 @@ function convertJSON(resp, chloropleth) {
     }).addTo(map);
 
     map.flyToBounds(layerGroup.getBounds())
+  } else {
+    return
   }
   
   map.on('zoomend', zoomHandler)
