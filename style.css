@@ -5,34 +5,44 @@ body {
     padding: 0;
     margin: 0;
 }
-/* #navbar {
-    margin: 25px;
-    background-color: black;
-} */
 #map {
     height: 100%;
     font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
-/* Google Icons */
-@font-face {
-    font-family: 'Material Symbols Outlined';
-    font-style: normal;
-    font-weight: 700;
-    src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v114/kJF4BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzazHD_dY40KH8nGzv3fz_VFU22ZZLsYEpzC_1hCs5Y0.woff2) format('woff2');
-  }
-  
-  .material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 18px;
-    letter-spacing: normal;
-    text-transform: none;
-    display: flex;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-  }
+h3 {
+  margin-bottom: 0;
+}
+
+#inc>h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #0F9D58;
+}
+
+#ori>h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #F4B400;
+}
+
+#cri>h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #DB4437;
+}
+
+.filter-btn {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: #fff;
+  border: 1px solid #dadce0;
+  box-shadow: none;
+  border-radius: 36px;
+  padding: 3px 15px 3px 15px;
+  margin: 5px 5px 5px 0px;
+}
+
+.filter-btn:hover,
+.filter-btn:active {
+  background-color: #F0F0F0;
+}

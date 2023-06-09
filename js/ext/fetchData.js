@@ -5,16 +5,55 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // Create a single supabase client for interacting with database
 const supabaseCredentials = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Function for loading data
-async function fetchData(tbl, variable_name, lowColor, highColor) {
+// Function for loading summary data
+async function fetchSummaries(func, latitude, longitude) {
   const { data, error } = await supabaseCredentials
-    .from(tbl)
-    .select()
+    .rpc(func, {
+      lat: latitude,
+      long: longitude
+    })
+
+  // console.log(data)
+  // console.log(data.Length)
+  // console.log(error)
+  
+  // if (data.Length == undefined) {
+  //   console.log('fuck')
+  //   return
+  // } else {
+
+    const geoJSON = await convertJSON(data, chloropleth = true)
+    return geoJSON
+  // }
+  
+};
+
+// Function for loading medians
+async function fetchMedians(func, filterName, date) {
+  const { data, error } = await supabaseCredentials
+    .rpc(func, {
+      columnname: filterName,
+      censusyear: date
+    })
 
   console.log(data)
   console.log(error)
 
-  const geoJSON = convertJSON(data, variable_name, lowColor, highColor)
-
+  stopFlag = true;
+  const geoJSON = convertJSON(data, chloropleth = false)
   return geoJSON
-}
+};
+
+// Function for loading filtered summaries
+async function fetchFiltered(func, filterValue) {
+  const { data, error } = await supabaseCredentials
+    .rpc(func, { fvalue: filterValue })
+    .select()
+
+  // console.log(data)
+  // console.log(error)
+
+  stopFlag = true;
+  const geoJSON = convertJSON(data, chloropleth = false)
+  return geoJSON
+};

@@ -15,8 +15,15 @@ map.setView(parameters.position, parameters.zoom);
 
 // set baselayer
 L.tileLayer(
-  "https://api.mapbox.com/styles/v1/jkantz/cli2m28n5006o01rbdxs04ak6/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamthbnR6IiwiYSI6ImNsaTJseG94azE0YzUzZG9jYTJvM2c2YjAifQ.OE-sFY6-3p3UNu3hiBmPTQ",
+  "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+  // "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+  // "https://api.mapbox.com/styles/v1/jkantz/cli2m28n5006o01rbdxs04ak6/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamthbnR6IiwiYSI6ImNsaTJseG94azE0YzUzZG9jYTJvM2c2YjAifQ.OE-sFY6-3p3UNu3hiBmPTQ",
   {
     maxZoom: parameters.maxZoom
   }
 ).addTo(map);
+
+// sidebar instance
+const sidebar = L.control
+  .sidebar({ container: "sidebar" })
+  .addTo(map)

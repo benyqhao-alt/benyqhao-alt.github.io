@@ -7,31 +7,209 @@
     <title>墨尔本地图</title>
     <!-- required stylesheets -->
     <link rel="stylesheet" href="./src/core/leaflet/leaflet.css" />
-    <!-- plugins -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
-    <!-- <link rel="stylesheet" href="./src/packages/plugins/geoapify-leaflet-address-search-plugin/L.Control.GeoapifyAddressSearch.css" /> -->
     <!-- initialization -->
     <link rel="stylesheet" href="style.css" />
+    <!-- plugins -->
+    <link rel="stylesheet" href="./src/plugins/sidebar/leaflet-sidebar.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="https://kit.fontawesome.com/345e4fda48.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="./src/plugins/geoapify-leaflet-address-search-plugin/L.Control.GeoapifyAddressSearch.css" /> -->
 
 </head>
 
 <body>
     <!-- generate map -->
-    <div id="navbar"></div>
+    <div id="sidebar" class="leaflet-sidebar collapsed">
+        <!-- nav tabs -->
+        <div class="leaflet-sidebar-tabs">
+            <ul role="tablist">
+                <!-- <li class="home"><a href="#home" role="tab"><i class="fa-solid fa-chart-simple"></i></a></li> -->
+                <li class="income"><a href="#inc" role="tab"><i class="fa-solid fa-sack-dollar"></i></a></li>
+                <li class="origins"><a href="#ori" role="tab"><i class="fa-solid fa-earth-asia"></i></a></li>
+                <!-- <li><a href="#edu" role="tab"><i class="fa-solid fa-graduation-cap"></i></a></li> -->
+                <li class="crime"><a href="#cri" role="tab"><i class="fa-solid fa-handcuffs"></i></a></li>
+                <li class="misc"
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); map.flyTo(parameters.position, 13);"><a
+                        role="tab"><i class="fa-solid fa-xmark"></i></a></li>
+
+            </ul>
+            <ul role="tablist">
+                <li class="misc"><a href="https://benyqhao.github.io" role="tab"><i class="fa-brands fa-github"></i></a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- panel content -->
+        <div class="leaflet-sidebar-content">
+            <!-- income tab -->
+            <div class="leaflet-sidebar-pane" id="home">
+                <h1 class="leaflet-sidebar-header home">
+                    General Snapshot
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+            </div>
+
+            <!-- income tab -->
+            <div class="leaflet-sidebar-pane" id="inc">
+                <h1 class="leaflet-sidebar-header income">
+                    Suburb Income (郊区居民收入)
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+                <h3>Median Personal Weekly Income</h3>
+                <h4>(每周个人收入中位數)</h4>
+                <button type="button" class="filter-btn" onclick="fetchMedians('melb_census_filter', 'census_median_tot_prsnl_inc_weekly', 2021);">2021</button>
+                <button type="button" class="filter-btn" onclick="fetchMedians('melb_census_filter', 'census_median_tot_prsnl_inc_weekly', 2016);">2016</button>
+                <button type="button" class="filter-btn" onclick="fetchMedians('melb_census_filter', 'census_median_tot_prsnl_inc_weekly', 2011);">2011</button>
+                <br>
+                This filter provides the median income across individuals residing within suburbs. Income data
+                aims to allow users in understanding the typical income among individuals living in different
+                neighborhoods and regions.
+                <br>
+
+                <h3>Median Family Weekly Income</h3>
+                <h4>(每周家庭收入中位數)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_fam_inc_weekly', 2021);">2021</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_fam_inc_weekly', 2016);">2016</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_fam_inc_weekly', 2011);">2011</button>
+                <br>This filter provides the median income across families residing within suburbs. Suburbs with a
+                high individual income but lower family income may suggest more independent residents.
+                <br>
+
+                <h3>Median Household Weekly Income</h3>
+                <h4>(每周房子收入中位數)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_hhd_inc_weekly', 2021);">2021</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_hhd_inc_weekly', 2016);">2016</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_hhd_inc_weekly', 2011);">2011</button>
+                <br>This filter provides the median income earned households by suburbs. High income data at this
+                level may suggest boarding homes or flatsharing situations if not positively correlated with
+                family incomes.<br>
+
+                <h3>Median Monthly Mortgage Repayments</h3>
+                <h4>(每周房子收入中位數)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_mortgage_repay_monthly', 2021);">2021</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_mortgage_repay_monthly', 2016);">2016</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_mortgage_repay_monthly', 2011);">2011</button>
+
+                <h3>Median Weekly Rent</h3>
+                <h4>(每周租金中位數)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_rent_weekly', 2021);">2021</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_rent_weekly', 2016);">2016</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_rent_weekly', 2011);">2011</button>
+            </div>
+            <!-- ethnic origins tab -->
+            <div class="leaflet-sidebar-pane" id="ori">
+                <h1 class="leaflet-sidebar-header origins">
+                    Ethnic Origins (种族)
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+                <h3>Country of Ancestry</h3>
+                <h4>(家乡)</h4>
+                <p>Filter map by ancestral background of residents within sbuurbs across Melbourne.</p>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Afghanistan');">Afghanistan</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Australia');">Australia</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Bangladesh');">Bangladesh</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Bosnia Herzegov');">Bosnia Herzegov</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Brazil');">Brazil</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Cambodia');">Cambodia</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Canada');">Canada</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Chile');">Chile</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'China');">China</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Croatia');">Croatia</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Egypt');">Egypt</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'England');">England</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Fiji');">Fiji</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'France');">France</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Germany');">Germany</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Greece');">Greece</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Hong Kong Sar Ch');">Hong Kong Sar Ch</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'India');">India</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Indonesia');">Indonesia</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Iran');">Iran</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Iraq');">Iraq</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Ireland');">Ireland</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Italy');">Italy</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Japan');">Japan</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Korea South');">Korea South</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Lebanon');">Lebanon</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Malaysia');">Malaysia</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Malta');">Malta</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Mauritius');">Mauritius</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Myanmar');">Myanmar</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Nepal');">Nepal</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Netherlands');">Netherlands</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'New Zealand');">New Zealand</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'North Macedonia');">North Macedonia</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Pakistan');">Pakistan</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Papua New Guinea');">Papua New Guinea</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Philippines');">Philippines</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Poland');">Poland</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Samoa');">Samoa</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Scotland');">Scotland</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Singapore');">Singapore</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'South Africa');">South Africa</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Sri Lanka');">Sri Lanka</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Taiwan');">Taiwan</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Thailand');">Thailand</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Turkey');">Turkey</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'United States Of America');">United States Of America</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Vietnam');">Vietnam</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Wales');">Wales</button>
+                    <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Zimbabwe');">Zimbabwe</button>
+            </div>
+            <!-- crime tab -->
+            <div class="leaflet-sidebar-pane" id="cri">
+                <h1 class="leaflet-sidebar-header crime">
+                    Crime (犯罪率)
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+                <h3>Crimes Against Individual</h3>
+                <h4>(针对个人犯罪率)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A Crimes against the person');">All</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A20 Assault and related offences');">Assault</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A50 Robbery');">Robbery</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A70 Stalking, harassment and threatening behaviour');">Stalking, Harassment & Threats</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A80 Dangerous and negligent acts endangering people');">Dangerous Negligence</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Other crimes against the person');">Other Crimes</button>
+
+                <h3>Property and Deception</h3>
+                <h4>(财产和欺骗犯罪率)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B Property and deception offences');">All</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B10 Arson');">Arson</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B20 Property damage');">Property Damage</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B30 Burglary/Break and enter');">Burglary</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B40 Theft');">Theft</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B50 Deception');">Deception</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B60 Bribery');">Bribery</button>
+
+                <h3>Drug Offences</h3>
+                <h4>(毒品犯罪率)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C Drug offences');">All</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C10 Drug dealing and trafficking');">Drug Dealing</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C20 Cultivate or manufacture drugs');">Cultivation & Manufacturing</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C30 Drug use and possession');">Usage & Possession</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C90 Other drug offences');">Other Crimes</button>
+
+                <h3>Weapons</h3>
+                <h4>(武器犯罪率)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'D Public order and security offences');">All</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'D10 Weapons and explosives offences');">Weapons & Explosives</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'D20 Disorderly and offensive conduct');">Disorderly & Offensive</button>
+            </div>
+        </div>
+    </div>
     <div id="map"></div>
     <!-- required libraries -->
     <script src="./src/core/leaflet/leaflet.js"></script>
     <!-- plugins -->
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
-    <script src="./src/core/choropleth/choropleth.js"></script>
+    <script src="./src/plugins/sidebar/leaflet-sidebar.min.js"></script>
+    <script src="./src/plugins/choropleth/choropleth.js"></script>
     <!-- <script src="./src/packages/plugins/geoapify-leaflet-address-search-plugin/L.Control.GeoapifyAddressSearch.js"></script> -->
     <!-- initialization -->
     <script src="./js/appInit.js"></script>
     <script src="./js/ext/fetchData.js"></script>
     <script src="./js/ext/convertJSON.js"></script>
     <script src="./js/ext/callSupabase.js"></script>
-    
+
 </body>
 
 </html>
