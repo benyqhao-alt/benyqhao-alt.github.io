@@ -23,13 +23,13 @@
         <!-- nav tabs -->
         <div class="leaflet-sidebar-tabs">
             <ul role="tablist">
-                <!-- <li class="home"><a href="#home" role="tab"><i class="fa-solid fa-chart-simple"></i></a></li> -->
+                <li class="home"><a href="#home" role="tab"><i class="fa-solid fa-chart-simple"></i></a></li>
                 <li class="income"><a href="#inc" role="tab"><i class="fa-solid fa-sack-dollar"></i></a></li>
                 <li class="origins"><a href="#ori" role="tab"><i class="fa-solid fa-earth-asia"></i></a></li>
                 <!-- <li><a href="#edu" role="tab"><i class="fa-solid fa-graduation-cap"></i></a></li> -->
                 <li class="crime"><a href="#cri" role="tab"><i class="fa-solid fa-handcuffs"></i></a></li>
                 <li class="misc"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); map.flyTo(parameters.position, 13);"><a
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); map.flyTo(parameters.position, 13); sidebar.disablePanel('home');"><a
                         role="tab"><i class="fa-solid fa-xmark"></i></a></li>
 
             </ul>
@@ -43,10 +43,12 @@
         <div class="leaflet-sidebar-content">
             <!-- income tab -->
             <div class="leaflet-sidebar-pane" id="home">
-                <h1 class="leaflet-sidebar-header home">
-                    General Snapshot
+                <h1 class="leaflet-sidebar-header home" id="home-header">
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
+                <div id="home-content">
+                    
+                </div>
             </div>
 
             <!-- income tab -->
@@ -239,16 +241,16 @@
                 <h3>Crimes Against Individual</h3>
                 <h4>(针对个人犯罪率)</h4>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A Crimes against the person');">All</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Crimes against the person');">All</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A20 Assault and related offences');">Assault</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Assault and related offences');">Assault</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A50 Robbery');">Robbery</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Robbery');">Robbery</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A70 Stalking, harassment and threatening behaviour');">Stalking,
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Stalking, harassment and threatening behaviour');">Stalking,
                     Harassment & Threats</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'A80 Dangerous and negligent acts endangering people');">Dangerous
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Dangerous and negligent acts endangering people');">Dangerous
                     Negligence</button>
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Other crimes against the person');">Other
@@ -257,47 +259,47 @@
                 <h3>Property and Deception</h3>
                 <h4>(财产和欺骗犯罪率)</h4>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B Property and deception offences');">All</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Property and deception offences');">All</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B10 Arson');">Arson</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Arson');">Arson</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B20 Property damage');">Property
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Property damage');">Property
                     Damage</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B30 Burglary/Break and enter');">Burglary</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Burglary/Break and enter');">Burglary</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B40 Theft');">Theft</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Theft');">Theft</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B50 Deception');">Deception</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Deception');">Deception</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'B60 Bribery');">Bribery</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Bribery');">Bribery</button>
 
                 <h3>Drug Offences</h3>
                 <h4>(毒品犯罪率)</h4>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C Drug offences');">All</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Drug offences');">All</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C10 Drug dealing and trafficking');">Drug
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Drug dealing and trafficking');">Drug
                     Dealing</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C20 Cultivate or manufacture drugs');">Cultivation
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Cultivate or manufacture drugs');">Cultivation
                     & Manufacturing</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C30 Drug use and possession');">Usage
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Drug use and possession');">Usage
                     & Possession</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'C90 Other drug offences');">Other
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Other drug offences');">Other
                     Crimes</button>
 
                 <h3>Weapons</h3>
                 <h4>(武器犯罪率)</h4>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'D Public order and security offences');">All</button>
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Public order and security offences');">All</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'D10 Weapons and explosives offences');">Weapons
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Weapons and explosives offences');">Weapons
                     & Explosives</button>
                 <button type="button" class="filter-btn"
-                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'D20 Disorderly and offensive conduct');">Disorderly
+                    onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Disorderly and offensive conduct');">Disorderly
                     & Offensive</button>
             </div>
         </div>

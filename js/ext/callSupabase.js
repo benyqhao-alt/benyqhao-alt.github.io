@@ -1,9 +1,9 @@
 let layerGroup
 let stopFlag
 
-// ---------------------------------
+// ------------------------------------------------------------
 // Functions
-// ---------------------------------
+// ------------------------------------------------------------
 function clearMap() {
     try {
         map.removeLayer(layerGroup);
@@ -17,18 +17,27 @@ async function zoomHandler(e) {
         return;
     } else {
         try {
-            sidebar.open("home");
+            sidebar.open('home');
         } catch (err) { }
 
         stopFlag = true
     }
 }
 
-// ---------------------------------
+async function updateSidebar(suburb) {
+    setTimeout(() => {
+        document.getElementById("home-header").innerHTML = suburb
+        + '<span class="leaflet-sidebar-close" onclick="sidebar.close();"><i class="fa fa-caret-left"></i></span>';
+        // Call additional values
+        fetchSuburbDetails(suburb);
+      }, 325);
+}
+
+// ------------------------------------------------------------
 // Initiate Supabase Calls
-// ---------------------------------
+// ------------------------------------------------------------
 function onMapClick(e) {
-    fetchSummaries('suburb_summaries', e.latlng.lat, e.latlng.lng);
+    const summaries = fetchSummaries('suburb_summaries', e.latlng.lat, e.latlng.lng);
 }
 
 map.on('click', onMapClick);
