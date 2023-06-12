@@ -26,6 +26,12 @@ h3 {
   color: #F4B400;
 }
 
+#bel>h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #70D1D0;
+}
+
 #cri>h4 {
   margin-top: 0;
   margin-bottom: 0;

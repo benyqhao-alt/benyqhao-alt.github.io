@@ -39,7 +39,10 @@ function convertJSON(resp, chloropleth) {
         weight: 1
       },
       onEachFeature: function (feature, layer) {
-        layer.bindPopup('<h3>' + feature.properties.suburb_name + '</h3>');
+        layer.bindPopup('<h3>' + feature.properties.suburb_name + '</h3>'
+        + '<button type="button" class="filter-btn" onclick="sidebar.enablePanel(\'home\'); updateSidebar(\'' 
+        + feature.properties.suburb_name 
+        + '\'); sidebar.open(\'home\');">Additional Details</button>')
       }
     }).addTo(map);
     

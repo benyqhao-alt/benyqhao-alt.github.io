@@ -87,6 +87,11 @@
     background-color: #F4B400;
 }
 
+.beliefs:hover,
+.beliefs.active {
+    background-color: #70D1D0;
+}
+
 .crime:hover,
 .crime.active {
     background-color: #DB4437;
@@ -199,6 +204,10 @@
 
 .leaflet-sidebar-header.origins {
     background-color: #F4B400;
+}
+
+.leaflet-sidebar-header.beliefs {
+    background-color: #70D1D0;
 }
 
 .leaflet-sidebar-header.crime {

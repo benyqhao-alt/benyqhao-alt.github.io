@@ -26,6 +26,7 @@
                 <li class="home"><a href="#home" role="tab"><i class="fa-solid fa-chart-simple"></i></a></li>
                 <li class="income"><a href="#inc" role="tab"><i class="fa-solid fa-sack-dollar"></i></a></li>
                 <li class="origins"><a href="#ori" role="tab"><i class="fa-solid fa-earth-asia"></i></a></li>
+                <li class="beliefs"><a href="#bel" role="tab"><i class="fa-solid fa-dove"></i></a></li>
                 <!-- <li><a href="#edu" role="tab"><i class="fa-solid fa-graduation-cap"></i></a></li> -->
                 <li class="crime"><a href="#cri" role="tab"><i class="fa-solid fa-handcuffs"></i></a></li>
                 <li class="misc"
@@ -41,7 +42,7 @@
 
         <!-- panel content -->
         <div class="leaflet-sidebar-content">
-            <!-- income tab -->
+            <!-- analytics tab -->
             <div class="leaflet-sidebar-pane" id="home">
                 <h1 class="leaflet-sidebar-header home" id="home-header">
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
@@ -50,7 +51,6 @@
                     
                 </div>
             </div>
-
             <!-- income tab -->
             <div class="leaflet-sidebar-pane" id="inc">
                 <h1 class="leaflet-sidebar-header income">
@@ -66,7 +66,7 @@
                 <button type="button" class="filter-btn"
                     onclick="fetchMedians('melb_census_filter', 'census_median_tot_prsnl_inc_weekly', 2011);">2011</button>
                 <br>
-                Filter on the median income across individuals residing within suburbs. Income data
+                Filter on the median income across Melbourne. Income data
                 aims to represent the typical income among individuals living across Melbourne.
                 <br>
 
@@ -91,7 +91,7 @@
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_hhd_inc_weekly', 2016);">2016</button>
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_hhd_inc_weekly', 2011);">2011</button>
-                <br>Filter provides the median income earned households by suburbs. High income data for this filter
+                <br>Filter provides the median income earned households across Melbourne. High income data for this filter
                 may suggest boarding homes or flatsharing situations if not positively correlated with
                 family incomes.<br>
 
@@ -121,7 +121,7 @@
                 </h1>
                 <h3>Country of Ancestry</h3>
                 <h4>(家乡)</h4>
-                <p>Filter map on ancestral background of residents by suburb across Melbourne.</p>
+                <p>Filter map on ancestral background of residents across Melbourne.</p>
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Afghanistan');">Afghanistan</button>
                 <button type="button" class="filter-btn"
@@ -231,6 +231,52 @@
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Wales');">Wales</button>
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Zimbabwe');">Zimbabwe</button>
+            </div>
+            <!-- religious beliefs tab -->
+            <div class="leaflet-sidebar-pane" id="bel">
+                <h1 class="leaflet-sidebar-header beliefs">
+                    Religious Beliefs (宗教)
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+                <p>Filter map on religious faith across Melbourne.</p>
+                <h3>Buddhism</h3>
+                <h4>(佛教)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Buddhism');">Buddhism</button>
+                <h3>Christianity</h3>
+                <h4>(基督教)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Total');">All</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Anglican');">Anglican</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Assyrian Apostolic');">Assyrian Apostolic</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Baptist');">Baptist</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Brethren');">Brethren</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Catholic');">Catholic</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Churches of Christ');">Churches of Christ</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Eastern Orthodox');">Eastern Orthodox</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Jehovah\'s Witnesses');">Jehovah's Witnesses</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Latter Day Saints');">Latter Day Saints</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Lutheran');">Lutheran</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Oriental Orthodox');">Oriental Orthodox</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Other');">Other</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Other Protestant');">Other Protestant</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Pentecostal');">Pentecostal</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Presbytarian and Reformed');">Presbytarian and Reformed</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Salvation Army');">Salvation Army</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Seventh Day Adventist');">Seventh Day Adventist</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Uniting Church');">Uniting Church</button>
+                <h3>Other Major Beliefs</h3>
+                <h4>(中东信仰)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Hinduism');">Hinduism</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Islam');">Islam</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Judaism');">Judaism</button>
+                <h3>Other Beliefs</h3>
+                <h4>(其他信仰)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Other Religions - Total');">All</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Australian Aboriginal Traditional Religions');">Australian Aboriginal Traditional Religions</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Sikhism');">Sikhism</button>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Other Religious Groups');">Other Religious Groups</button>
+                <h3>Secular Beliefs</h3>
+                <h4>(世俗信仰)</h4>
+                <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Other Beliefs - Total');">No Religion</button>
             </div>
             <!-- crime tab -->
             <div class="leaflet-sidebar-pane" id="cri">
