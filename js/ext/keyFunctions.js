@@ -33,7 +33,7 @@ async function updateSidebar(suburb) {
     }, 325);
 }
 
-function overviewGraphs(data, divID) {
+function overviewGraphs(data, divID, color) {
     // Sort the data based on value in descending order
     data.sort((a, b) => b.item_value - a.item_value);
     
@@ -46,7 +46,7 @@ function overviewGraphs(data, divID) {
     // Create scales for x and y axes
     const xScale = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.item_value)])
-        .range([0, 700]);
+        .range([0, 600]);
     
     const yScale = d3.scaleBand()
         .domain(data.map(d => d.item_title))
@@ -62,7 +62,7 @@ function overviewGraphs(data, divID) {
         .attr("y", d => yScale(d.item_title))
         .attr("width", d => xScale(d.item_value))
         .attr("height", yScale.bandwidth())
-        .attr("fill", "#F4B400");
+        .attr("fill", color);
 
     // Add labels to the bars
     svg
@@ -78,4 +78,5 @@ function overviewGraphs(data, divID) {
     .attr('font-size', '30px');
 
     svg.node();
+    console.log(data)
 }

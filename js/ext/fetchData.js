@@ -41,13 +41,15 @@ async function fetchSuburbDetails(suburbName) {
     // Create divs for analysis sections
     suburbOverview = '<h3>Suburb Overview</h3><div id="d3-medians"></div>';
     ancestryGraphs = '<h3>Ancestry (Top 25)</h3><div id="d3-ancestry"></div>';
+    faithGraphs = '<h3>Faith</h3><div id="d3-faith"></div>';
     crimeGraphs = '<h3>Crime</h3><div id="d3-ancestry"></div>';
     
-    document.getElementById("home-content").innerHTML = suburbOverview + ancestryGraphs + crimeGraphs;
+    document.getElementById("home-content").innerHTML = suburbOverview + ancestryGraphs + faithGraphs + crimeGraphs;
     // console.log(data);
     // console.log(data.filter(item => item.category == 'Ancestry'));
     
-    overviewGraphs(data.filter(item => item.category == 'Ancestry'), '#d3-ancestry')
+    overviewGraphs(data.filter(item => item.category == 'Ancestry'), '#d3-ancestry', "#F4B400")
+    overviewGraphs(data.filter(item => item.category == 'Faith'), '#d3-faith', "#70D1D0")
 
 };
 
