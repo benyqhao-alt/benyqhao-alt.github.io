@@ -37,17 +37,18 @@ async function fetchSuburbDetails(suburbName) {
       suburb: suburbName,
     });
 
-    // median trends
-    suburbOverview = '<h3>Suburb Overview</h3>'
-
-    // ancestry
-    ancestryGraphs = '<h3>Ancestry</h3>'
-
-    // crime
-    crimeGraphs = '<h3>Crime</h3>'
+    
+    // Create divs for analysis sections
+    suburbOverview = '<h3>Suburb Overview</h3><div id="d3-medians"></div>';
+    ancestryGraphs = '<h3>Ancestry (Top 25)</h3><div id="d3-ancestry"></div>';
+    crimeGraphs = '<h3>Crime</h3><div id="d3-ancestry"></div>';
     
     document.getElementById("home-content").innerHTML = suburbOverview + ancestryGraphs + crimeGraphs;
-    console.log(data);
+    // console.log(data);
+    // console.log(data.filter(item => item.category == 'Ancestry'));
+    
+    overviewGraphs(data.filter(item => item.category == 'Ancestry'), '#d3-ancestry')
+
 };
 
 // ------------------------------------------------------------
