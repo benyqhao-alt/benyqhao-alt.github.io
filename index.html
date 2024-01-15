@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>墨尔本地图</title>
+    <title>Melbourne </title>
     <!-- required stylesheets -->
     <link rel="stylesheet" href="./src/core/leaflet/leaflet.css" />
     <!-- initialization -->
@@ -54,11 +54,11 @@
             <!-- income tab -->
             <div class="leaflet-sidebar-pane" id="inc">
                 <h1 class="leaflet-sidebar-header income">
-                    Suburb Income (郊区居民收入)
+                    Suburb Income
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <h3>Median Personal Weekly Income</h3>
-                <h4>(每周个人收入中位數)</h4>
+                <!-- <h4>(每周个人收入中位數)</h4> -->
                 <button type="button" class="filter-btn"
                     onclick="fetchMedians('melb_census_filter', 'census_median_tot_prsnl_inc_weekly', 2021);">2021</button>
                 <button type="button" class="filter-btn"
@@ -71,7 +71,7 @@
                 <br>
 
                 <h3>Median Family Weekly Income</h3>
-                <h4>(每周家庭收入中位數)</h4>
+                <!-- <h4>(每周家庭收入中位數)</h4> -->
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_fam_inc_weekly', 2021);">2021</button>
                 <button type="button" class="filter-btn"
@@ -84,7 +84,7 @@
                 <br>
 
                 <h3>Median Household Weekly Income</h3>
-                <h4>(每周房子收入中位數)</h4>
+                <!-- <h4>(每周房子收入中位數)</h4> -->
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_tot_hhd_inc_weekly', 2021);">2021</button>
                 <button type="button" class="filter-btn"
@@ -96,7 +96,7 @@
                 family incomes.<br>
 
                 <h3>Median Monthly Mortgage Repayments</h3>
-                <h4>(每周房子收入中位數)</h4>
+                <!-- <h4>(每周房子收入中位數)</h4> -->
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_mortgage_repay_monthly', 2021);">2021</button>
                 <button type="button" class="filter-btn"
@@ -105,7 +105,7 @@
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_mortgage_repay_monthly', 2011);">2011</button>
 
                 <h3>Median Weekly Rent</h3>
-                <h4>(每周租金中位數)</h4>
+                <!-- <h4>(每周租金中位數)</h4> -->
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchMedians('melb_census_filter', 'census_median_rent_weekly', 2021);">2021</button>
                 <button type="button" class="filter-btn"
@@ -116,11 +116,11 @@
             <!-- ethnic origins tab -->
             <div class="leaflet-sidebar-pane" id="ori">
                 <h1 class="leaflet-sidebar-header origins">
-                    Ethnic Origins (种族)
+                    Ethnic Origins
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <h3>Country of Ancestry</h3>
-                <h4>(家乡)</h4>
+                <!-- <h4>(家乡)</h4> -->
                 <p>Filter map on ancestral background of residents across Melbourne.</p>
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_ancestry_filter', 'Afghanistan');">Afghanistan</button>
@@ -235,15 +235,15 @@
             <!-- religious beliefs tab -->
             <div class="leaflet-sidebar-pane" id="bel">
                 <h1 class="leaflet-sidebar-header beliefs">
-                    Religious Beliefs (宗教)
+                    Religious Beliefs
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
                 <p>Filter map on religious faith across Melbourne.</p>
                 <h3>Buddhism</h3>
-                <h4>(佛教)</h4>
+                <!-- <h4>(佛教)</h4> -->
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Buddhism');">Buddhism</button>
                 <h3>Christianity</h3>
-                <h4>(基督教)</h4>
+                <!-- <h4>(基督教)</h4> -->
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Total');">All</button>
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Anglican');">Anglican</button>
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Assyrian Apostolic');">Assyrian Apostolic</button>
@@ -264,28 +264,28 @@
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Seventh Day Adventist');">Seventh Day Adventist</button>
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Christian - Uniting Church');">Uniting Church</button>
                 <h3>Other Major Beliefs</h3>
-                <h4>(中东信仰)</h4>
+                <!-- <h4>(中东信仰)</h4> -->
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Hinduism');">Hinduism</button>
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Islam');">Islam</button>
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Judaism');">Judaism</button>
                 <h3>Other Beliefs</h3>
-                <h4>(其他信仰)</h4>
+                <!-- <h4>(其他信仰)</h4> -->
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Other Religions - Total');">All</button>
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Australian Aboriginal Traditional Religions');">Australian Aboriginal Traditional Religions</button>
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Sikhism');">Sikhism</button>
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Other Religious Groups');">Other Religious Groups</button>
                 <h3>Secular Beliefs</h3>
-                <h4>(世俗信仰)</h4>
+                <!-- <h4>(世俗信仰)</h4> -->
                 <button type="button" class="filter-btn" onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_faith_filter', 'Other Beliefs - Total');">No Religion</button>
             </div>
             <!-- crime tab -->
             <div class="leaflet-sidebar-pane" id="cri">
                 <h1 class="leaflet-sidebar-header crime">
-                    Crime (犯罪率)
+                    Crime
                     <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <h3>Crimes Against Individual</h3>
-                <h4>(针对个人犯罪率)</h4>
+                <h3>Crimes against an Individual</h3>
+                <!-- <h4>(针对个人犯罪率)</h4> -->
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Crimes against the person');">All</button>
                 <button type="button" class="filter-btn"
@@ -303,7 +303,7 @@
                     Crimes</button>
 
                 <h3>Property and Deception</h3>
-                <h4>(财产和欺骗犯罪率)</h4>
+                <!-- <h4>(财产和欺骗犯罪率)</h4> -->
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Property and deception offences');">All</button>
                 <button type="button" class="filter-btn"
@@ -321,7 +321,7 @@
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Bribery');">Bribery</button>
 
                 <h3>Drug Offences</h3>
-                <h4>(毒品犯罪率)</h4>
+                <!-- <h4>(毒品犯罪率)</h4> -->
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Drug offences');">All</button>
                 <button type="button" class="filter-btn"
@@ -338,7 +338,7 @@
                     Crimes</button>
 
                 <h3>Weapons</h3>
-                <h4>(武器犯罪率)</h4>
+                <!-- <h4>(武器犯罪率)</h4> -->
                 <button type="button" class="filter-btn"
                     onclick="stopFlag = true; sidebar.close(); clearMap(); fetchFiltered('melb_crime_filter', 'Public order and security offences');">All</button>
                 <button type="button" class="filter-btn"
